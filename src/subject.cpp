@@ -11,6 +11,12 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////
+// Averichkina Victoria
+// 184-1
+// Date:         23.11.2019
+////////////////////////////////////////////////////////////////////////////////
+
 
 #include "subject.h"
 
@@ -35,7 +41,27 @@ std::ostream& operator<<(std::ostream& outs, const Subject& subj)
 
 std::istream& operator>>(std::istream& ins, Subject& subj)
 {
-    // TODO: здесь необходимо дописать реализацию метода
+    /// для того, чтобы прочитать первые два параметра, а затем начать запись в описание
+   int line = -2;
+   std::string extra = "";
+   while((line!=10)&&(std::getline(ins, extra))&&(!extra.empty()))
+   {
+       if(line == -2)
+       {
+           subj.name = extra;
+           line += 1;
+       }
+       else if(line == -1)
+       {
+           subj.title = extra;
+           line += 1;
+       }
+       else
+       {
+           subj.description[line] = extra;
+           line += 1;
+       }
+   }
 
     return ins;
 }
